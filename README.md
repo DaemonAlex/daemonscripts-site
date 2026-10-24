@@ -13,6 +13,25 @@ Each project is one Markdown file in `src/content/projects/`. Read `CONTENT.md` 
 voice, the section order and the list of things that must never be published. The frontmatter fields
 are defined in `src/content.config.ts`; the build fails if one is wrong.
 
+## Write a blog post
+
+Add `src/content/blog/<slug>.md` (the file name is the URL, `/blog/<slug>/`):
+
+```md
+---
+title: DPS Tow Job 2.0
+summary: One or two sentences for the list page, the RSS feed and link previews.
+date: 2026-11-02
+tags: ["release", "fivem"]
+projects: ["dps-towjob"]   # optional: links the project pages under the post
+draft: true                # optional: keeps it off the site until you remove this line
+---
+
+The post, in Markdown. Same voice rules as CONTENT.md (and no em dashes).
+```
+
+Merge the PR and Cloudflare publishes it, adds it to the home page and to `/rss.xml`.
+
 ## Run it locally
 
 ```sh

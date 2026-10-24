@@ -45,4 +45,27 @@ const projects = defineCollection({
     }),
 });
 
-export const collections = { projects };
+/**
+ * One Markdown file per post in src/content/blog/<slug>.md. The file name is the URL:
+ * /blog/<slug>/. Posts with `draft: true` are left out of the build.
+ */
+const blog = defineCollection({
+    loader: glob({ pattern: '**/*.md', base: './src/content/blog' }),
+    schema: z.object({
+        title: z.string(),
+        /** One or two sentences for the list page, the RSS feed and link previews. */
+        summary: z.string().max(240),
+        /** Publish date, YYYY-MM-DD. Newest first on the list page. */
+        date: z.coerce.date(),
+        /** Set when a post is changed after publishing. */
+        updated: z.coerce.date().optional(),
+        author: z.string().default('DaemonAlex'),
+        /** Short topic labels: ["release", "fivem", "apex"]. */
+        tags: z.array(z.string()).default([]),
+        /** Project slugs the post is about; their pages are linked under the post. */
+        projects: z.array(z.string()).default([]),
+        draft: z.boolean().default(false),
+    }),
+});
+
+export const collections = { projects, blog };
