@@ -71,7 +71,7 @@ There is no config file. The settings are constants in `client.lua`:
 | Command | Who | What it does |
 | --- | --- | --- |
 | `E` | Anyone at a station | Board a train, or get off / queue getting off while riding |
-| `/board` | Anyone | Board the nearest carriage within 8 metres, without the station check |
+| `/boardtrain` | Anyone | Board the nearest carriage within 8 metres, without the station check |
 | `/disembark` | Anyone | Get off now, whatever the speed |
 | `/traindoors` | Anyone | Print each carriage's door count; with `0`, `1`, `2` or `off`, open one side, the other, both, or close all |
 | `/seatmark` | Anyone | Print your offset from the nearest carriage, for tuning seat positions |
