@@ -3,8 +3,10 @@ import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
 import ProjectCard from '../components/ProjectCard.astro';
 import { sortProjects } from '../lib/labels';
+import { formatDate, getPosts } from '../lib/blog';
 
 const projects = (await getCollection('projects')).sort(sortProjects);
+const latestPosts = (await getPosts()).slice(0, 3);
 const featured = projects.filter((p) => p.data.featured);
 const count = (category: string) => projects.filter((p) => p.data.category === category).length;
 const live = projects.filter((p) => p.data.status === 'live').length;
@@ -41,6 +43,33 @@ const live = projects.filter((p) => p.data.status === 'live').length;
             </ul>
         </div>
     </section>
+
+    {
+        latestPosts.length > 0 && (
+            <section class='block' style='padding-top: 0'>
+                <div class='wrap'>
+                    <div class='section-head'>
+                        <h2>From the blog</h2>
+                    </div>
+                    <ul class='posts'>
+                        {latestPosts.map((post) => (
+                            <li>
+                                <a class='post-row' href={`/blog/${post.id}/`}>
+                                    <time class='data faint' datetime={post.data.date.toISOString()}>
+                                        {formatDate(post.data.date)}
+                                    </time>
+                                    <div>
+                                        <h2>{post.data.title}</h2>
+                                        <p>{post.data.summary}</p>
+                                    </div>
+                                </a>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+            </section>
+        )
+    }
 
     <section class='block' style='padding-top: 0'>
         <div class='wrap'>

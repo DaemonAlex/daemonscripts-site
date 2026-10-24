@@ -1,0 +1,49 @@
+---
+import Base from '../../layouts/Base.astro';
+import { formatDate, getPosts } from '../../lib/blog';
+
+const posts = await getPosts();
+---
+
+<Base title='Blog' current='blog' description='News, releases and build notes from DaemonScripts: DPS scripts, APEX and our tools.'>
+    <section class='hero' style='padding-block: 3rem'>
+        <div class='wrap'>
+            <p class='label'>News and build notes</p>
+            <h1 style='margin-top: 0.5rem'>Blog</h1>
+            <p class='lede' style='margin-bottom: 0'>
+                Releases, changes to the DPS scripts, APEX updates and notes from building them.
+                <a href='/rss.xml'>Follow by RSS</a>.
+            </p>
+        </div>
+    </section>
+
+    <section class='block'>
+        <div class='wrap'>
+            {posts.length === 0 && <p class='faint'>No posts yet.</p>}
+            <ul class='posts'>
+                {
+                    posts.map((post) => (
+                        <li>
+                            <a class='post-row' href={`/blog/${post.id}/`}>
+                                <time class='data faint' datetime={post.data.date.toISOString()}>
+                                    {formatDate(post.data.date)}
+                                </time>
+                                <div>
+                                    <h2>{post.data.title}</h2>
+                                    <p>{post.data.summary}</p>
+                                    {post.data.tags.length > 0 && (
+                                        <div class='meta'>
+                                            {post.data.tags.map((tag) => (
+                                                <span class='chip'>{tag}</span>
+                                            ))}
+                                        </div>
+                                    )}
+                                </div>
+                            </a>
+                        </li>
+                    ))
+                }
+            </ul>
+        </div>
+    </section>
+</Base>
