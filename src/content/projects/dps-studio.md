@@ -44,14 +44,103 @@ Every change is logged with who made it and when, and most of them can be put ba
 
 ## How it works
 
-1. An admin types `/admin`. The server checks the `dps.entityselector` ace before the panel opens.
-2. In the Rooms tab they stand where the door should be, pick a shell or interior, walk inside it and press G to mark the way out.
-3. In the Place tab they choose props from the library. The piece follows their view; Tab switches to fine tune; left click or Enter saves it.
-4. They set who may enter, and optionally attach ox_doorlock doors to the room so one access rule covers everything.
-5. Players walking past see the door prompt and press E to go in. The room and its furniture spawn only while someone is nearby.
-6. If anything goes wrong, the History tab shows every change and can put a room or door back.
+An admin types `/admin`. The server checks the `dps.entityselector` ace, then the Studio panel opens with seven tabs along the top: Rooms, Place, Shells, Inspect, Spots, Doors and History. Arrow keys move through any list, Enter opens, and typing searches.
 
-Shell rooms sit 60 m below their door. Furniture, rooms and doors are stored in the database, so nothing is lost on restart.
+### Rooms
+
+Stand where the door should be, pick a shell or interior, walk inside it and press G to mark the way out. Players walking past see the door prompt and press E to go in; the room and its furniture spawn only while someone is nearby. Shell rooms sit 60 m below their door, and rooms, furniture and doors live in the database, so nothing is lost on restart.
+
+<div class="shots">
+<figure>
+<img src="/projects/dps-studio/01-rooms.jpg" alt="Studio Rooms tab listing three rooms with their shells and furniture counts" width="603" height="1015" loading="lazy">
+<figcaption>The Rooms tab: each room is a door, a shell and saved looks of furniture, with a piece count against the 400 limit. "New room at my spot" starts another one where you stand.</figcaption>
+</figure>
+<figure>
+<img src="/projects/dps-studio/03-place-start.jpg" alt="Studio Place tab asking which room to decorate, with furniture category chips" width="603" height="1013" loading="lazy">
+<figcaption>The Place tab starts by asking which room to decorate, then takes you inside it. Housing furniture is sorted into categories, and every piece has a photo.</figcaption>
+</figure>
+</div>
+
+### Furnishing a room
+
+The Place tab lists the prop library, searchable and grouped by category, each piece with a thumbnail. Pick one and it follows your view; Tab switches to fine tune, where the arrows slide it 1 cm, Page Up and Page Down raise it 1 cm, and Q, E or the wheel turn it 1 degree (10 cm and 15 degrees with Shift). Left click or Enter saves it. Each room keeps named looks, so the same room can switch between saved layouts.
+
+<figure class="tall">
+<img src="/projects/dps-studio/02-place-library.jpg" alt="Studio Place tab showing the Electronics category with prop thumbnails" width="602" height="1015" loading="lazy">
+<figcaption>Building the Airport Ops office: the Electronics category, each prop with its photo, model name and pack. Pieces you never want to see can be hidden for every admin.</figcaption>
+</figure>
+
+<figure>
+<img src="/projects/dps-studio/04-placing.jpg" alt="A filing cabinet following the player's view while being placed in an office" width="1600" height="1219" loading="lazy">
+<figcaption>Placing a filing cabinet. The piece follows where you look, and the bar along the bottom lists the keys.</figcaption>
+</figure>
+
+<figure>
+<img src="/projects/dps-studio/05-fine-tune.jpg" alt="Fine tune mode with the key bar for 1 cm moves and 1 degree turns" width="1600" height="1149" loading="lazy">
+<figcaption>Fine tune: 1 cm slides and 1 degree turns, or 10 cm and 15 degree steps with Shift held.</figcaption>
+</figure>
+
+<figure>
+<img src="/projects/dps-studio/06-placing-arcade.jpg" alt="An arcade cabinet being placed beside an airport departures board" width="1575" height="1384" loading="lazy">
+<figcaption>An arcade cabinet going into the terminal, next to the live departures board from DPS Airlines.</figcaption>
+</figure>
+
+### Shells
+
+The Shells tab lists every shell and real interior the server knows about, with its pack, type and whether it is furnished. Pick one and it floats in the sky, so open-sided shells can be seen from every side; drag or use the arrows to turn it, the wheel to zoom, and Enter to walk inside before you commit to it.
+
+<figure>
+<img src="/projects/dps-studio/07-shells.jpg" alt="A luxury apartment shell previewed floating in the sky beside the Shells list" width="1600" height="908" loading="lazy">
+<figcaption>Previewing a furnished luxury apartment shell. The list covers 256 shells and 169 interiors, filtered by crime, home and work.</figcaption>
+</figure>
+
+### Inspect and spots
+
+Hold middle mouse and aim at anything to see what it is: model name, kind, hash and exact position. Spots are saved positions, made with Page Up (`/spot`) or F3 (`/pos`), each with the street and area it was taken in, and one click teleports you back to it.
+
+<div class="shots">
+<figure>
+<img src="/projects/dps-studio/09-spots.jpg" alt="Studio Spots tab listing saved positions with street, area, time and author" width="607" height="1018" loading="lazy">
+<figcaption>The Spots tab, newest first: each saved spot with its street, area, time and who made it.</figcaption>
+</figure>
+<figure>
+<img src="/projects/dps-studio/08-inspect.jpg" alt="Inspect card showing model name, kind, hash and position of an object" width="346" height="207" loading="lazy">
+<figcaption>The Inspect card for the object you aim at: model, kind, hash and position, ready to copy from the Inspect tab.</figcaption>
+</figure>
+</div>
+
+### Doors
+
+The Doors tab manages the city's ox_doorlock doors in one list: rename them, lock or unlock them, set who may open them, and add a new single or double door by clicking it in the world. A room can own doors, so changing the room's access updates them all.
+
+<figure class="tall">
+<img src="/projects/dps-studio/10-doors.jpg" alt="Studio Doors tab listing locked doors with the departments allowed through each" width="604" height="1015" loading="lazy">
+<figcaption>57 doors in the city's lock system, each with who may open it, from every police department to "Everyone".</figcaption>
+</figure>
+
+### History
+
+Every room and door change is written to History with who made it and when. Restore a room to how it was before a change, bring back a deleted room, or put a door back.
+
+<figure class="tall">
+<img src="/projects/dps-studio/11-history.jpg" alt="Studio History tab listing room and door changes with type labels" width="605" height="1016" loading="lazy">
+<figcaption>History: rooms made, doors created and furniture placed or removed, each one able to be put back.</figcaption>
+</figure>
+
+### Photo booth
+
+The thumbnails in the Place tab come from the photo booth. It takes every library piece up into the sky one at a time, photographs it alone, cuts it out and uploads it. A run can be stopped with Backspace and carries on where it left off next time.
+
+<div class="shots">
+<figure>
+<img src="/projects/dps-studio/12-photo-booth-bench.jpg" alt="A weight bench photographed alone against the sky" width="1600" height="900" loading="lazy">
+<figcaption>A gym bench in the booth.</figcaption>
+</figure>
+<figure>
+<img src="/projects/dps-studio/13-photo-booth-art.jpg" alt="A framed painting in the photo booth with a progress bar reading 429 of 1225" width="1600" height="1200" loading="lazy">
+<figcaption>Wall art in the booth, piece 429 of 1225.</figcaption>
+</figure>
+</div>
 
 ## Requirements
 
