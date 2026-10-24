@@ -37,7 +37,7 @@ Version 3.1.0 moved every payout to the server. Pay is worked out from the serve
 - Ferry flights to reposition aircraft without passengers, at reduced pay.
 - ATC-style radio calls for takeoff and landing clearance, position reports and declaring an emergency.
 - A black box recorder and passenger reviews based on landing, service and timing.
-- Walkable cabins: aircraft with interior mods get them applied on spawn, and players board with ox_target or `/board`.
+- Walkable cabins: aircraft with interior mods get them applied on spawn, and players board with ox_target or `/boardplane` and leave with `/exitplane`.
 - A React tablet with six pages: overview, flight log, type ratings, incidents, a live flight tracker for dispatchers and crew management for the chief pilot.
 - Rate limits and input checks on every server action, and a TTL cache for database reads.
 
@@ -92,7 +92,8 @@ Upgrading from v2: back up your `airline_*` tables, run `sql/migrate_v2_to_v3.sq
 | Command | Who | What it does |
 | --- | --- | --- |
 | `/airlinemenu` (default key `F7`) | On-duty airline staff near an airport | Opens the airline tablet |
-| `/board` or `/boardplane` | Anyone | Boards the nearest aircraft within 12 metres |
+| `/boardplane` | Anyone | Takes a free cabin seat on the nearest aircraft or bus within 12 metres |
+| `/exitplane` | Anyone on board | Leaves the aircraft or bus once it has stopped |
 
 ## Credits
 
