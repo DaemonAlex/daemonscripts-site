@@ -1,0 +1,71 @@
+---
+import { getCollection, render, type CollectionEntry } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import { areaLabels, categoryLabels, statusLabels } from '../../lib/labels';
+
+export async function getStaticPaths() {
+    const projects = await getCollection('projects');
+    return projects.map((project) => ({ params: { slug: project.id }, props: { project } }));
+}
+
+interface Props {
+    project: CollectionEntry<'projects'>;
+}
+
+const { project } = Astro.props;
+const { title, tagline, category, area, status, repo, website, stack, frameworks, requires, credits } = project.data;
+const { Content } = await render(project);
+const kind = area ? `${categoryLabels[category]} · ${areaLabels[area]}` : categoryLabels[category];
+
+const facts = [
+    { label: 'Stack', items: stack },
+    { label: 'Frameworks', items: frameworks },
+    { label: 'Requires', items: requires },
+].filter((fact) => fact.items.length > 0);
+---
+
+<Base title={title} description={tagline} current={project.id === 'apex' ? 'apex' : 'projects'}>
+    <section class='hero' style='padding-block: 3rem'>
+        <div class='wrap'>
+            <p class='label'><a href='/projects/' style='color: inherit; text-decoration: none'>Projects</a> / {kind}</p>
+            <div style='display: flex; flex-wrap: wrap; align-items: center; gap: 1rem; margin-top: 0.6rem'>
+                <h1>{title}</h1>
+                <span class={`badge ${status}`}>{statusLabels[status]}</span>
+            </div>
+            <p class='lede' style='margin-bottom: 0'>{tagline}</p>
+        </div>
+    </section>
+
+    <div class='wrap project-layout'>
+        <article class='prose'>
+            <Content />
+        </article>
+
+        <aside class='facts panel' aria-label='Project facts'>
+            <dl>
+                {
+                    facts.map((fact) => (
+                        <div>
+                            <dt>{fact.label}</dt>
+                            <dd>
+                                {fact.items.map((item) => (
+                                    <span class='chip'>{item}</span>
+                                ))}
+                            </dd>
+                        </div>
+                    ))
+                }
+                {
+                    credits && (
+                        <div>
+                            <dt>Credits</dt>
+                            <dd class='faint' style='font-size: 0.95rem'>{credits}</dd>
+                        </div>
+                    )
+                }
+            </dl>
+            {website && <a class='btn btn-action' href={website}>Visit {new URL(website).hostname}</a>}
+            {repo && <a class={`btn ${website ? 'btn-secondary' : 'btn-action'}`} href={repo}>View on GitHub</a>}
+        </aside>
+    </div>
+</Base>

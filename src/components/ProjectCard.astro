@@ -1,0 +1,36 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { areaLabels, categoryLabels, statusLabels } from '../lib/labels';
+
+interface Props {
+    project: CollectionEntry<'projects'>;
+}
+
+const { project } = Astro.props;
+const { title, tagline, category, area, status, stack, tags } = project.data;
+const kind = area ? areaLabels[area] : categoryLabels[category];
+// Words the projects page search looks through.
+const search = [title, tagline, kind, ...stack, ...tags].join(' ').toLowerCase();
+---
+
+<li data-category={category} data-search={search}>
+    <a class='card' href={`/projects/${project.id}/`}>
+        <div class='card-top'>
+            <div>
+                <p class='label'>{kind}</p>
+                <h3>{title}</h3>
+            </div>
+            <span class={`badge ${status}`}>{statusLabels[status]}</span>
+        </div>
+        <p>{tagline}</p>
+        {
+            stack.length > 0 && (
+                <div class='meta'>
+                    {stack.slice(0, 4).map((item) => (
+                        <span class='chip'>{item}</span>
+                    ))}
+                </div>
+            )
+        }
+    </a>
+</li>
