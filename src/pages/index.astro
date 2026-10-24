@@ -1,0 +1,66 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import { sortProjects } from '../lib/labels';
+
+const projects = (await getCollection('projects')).sort(sortProjects);
+const featured = projects.filter((p) => p.data.featured);
+const count = (category: string) => projects.filter((p) => p.data.category === category).length;
+const live = projects.filter((p) => p.data.status === 'live').length;
+---
+
+<Base current='home'>
+    <section class='hero'>
+        <div class='wrap'>
+            <p class='label'>FiveM scripts · Platforms · Tools · Chicago, IL</p>
+            <h1 class='display' style='margin-top: 0.75rem'>Daemon<span class='hl'>Scripts</span></h1>
+            <p class='lede'>
+                We build the scripts that run the Del Perro Sands roleplay city, the APEX platform for audio-visual
+                integrators, and the tools around them. Every project below has its own page that explains what it does,
+                how it works and how to install it.
+            </p>
+            <div class='actions'>
+                <a class='btn btn-action' href='/projects/'>Browse projects</a>
+                <a class='btn btn-secondary' href='/projects/apex/'>Meet APEX</a>
+            </div>
+            <div class='stats'>
+                <div class='stat'><b>{count('fivem')}</b><span>FiveM scripts</span></div>
+                <div class='stat'><b>{count('platform')}</b><span>Platforms</span></div>
+                <div class='stat'><b>{count('tool')}</b><span>Tools</span></div>
+                <div class='stat'><b>{live}</b><span>Live today</span></div>
+            </div>
+        </div>
+    </section>
+
+    <section class='block'>
+        <div class='wrap'>
+            <div class='section-head'><h2>Featured</h2></div>
+            <ul class='cards'>
+                {featured.map((project) => <ProjectCard project={project} />)}
+            </ul>
+        </div>
+    </section>
+
+    <section class='block' style='padding-top: 0'>
+        <div class='wrap'>
+            <div class='panel' style='display: grid; gap: 1.5rem; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); align-items: center'>
+                <div>
+                    <p class='label'>Open source</p>
+                    <h2 style='margin-top: 0.5rem'>The DPS collection</h2>
+                    <p class='quiet' style='margin-bottom: 0'>
+                        Our <code class='data'>dps-</code> scripts are free and open source on GitHub, written for the Del
+                        Perro Sands city on Qbox. Jobs, city services, police and EMS tools, vehicles and staff tools.
+                    </p>
+                </div>
+                <div style='text-align: center'>
+                    <a href='https://delperrosands.com' aria-label='DelPerroSands'><img src='/dps-logo.svg' alt='DPS' width='300' height='98' /></a>
+                </div>
+                <div class='actions' style='justify-content: center'>
+                    <a class='btn btn-secondary' href='/projects/#fivem'>See the scripts</a>
+                    <a class='btn btn-secondary' href='https://github.com/DaemonAlex'>GitHub</a>
+                </div>
+            </div>
+        </div>
+    </section>
+</Base>

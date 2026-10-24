@@ -1,0 +1,71 @@
+---
+import '../styles/site.css';
+
+interface Props {
+    title?: string;
+    description?: string;
+    /** The nav item to show as picked. */
+    current?: 'home' | 'projects' | 'apex' | 'about';
+}
+
+const { title, description = 'DaemonScripts builds FiveM scripts for the Del Perro Sands roleplay city, the APEX platform for AV integrators, and the tools around them.', current } = Astro.props;
+const fullTitle = title ? `${title} | DaemonScripts` : 'DaemonScripts | FiveM scripts, platforms and tools';
+const canonical = new URL(Astro.url.pathname, Astro.site);
+
+const nav = [
+    { id: 'home', href: '/', label: 'Home' },
+    { id: 'projects', href: '/projects/', label: 'Projects' },
+    { id: 'apex', href: '/projects/apex/', label: 'APEX' },
+    { id: 'about', href: '/about/', label: 'About' },
+] as const;
+---
+
+<!doctype html>
+<html lang='en'>
+    <head>
+        <meta charset='utf-8' />
+        <meta name='viewport' content='width=device-width, initial-scale=1' />
+        <title>{fullTitle}</title>
+        <meta name='description' content={description} />
+        <link rel='canonical' href={canonical} />
+        <link rel='icon' href='/dps-icon-32.png' type='image/png' />
+        <meta name='theme-color' content='#0f1a2e' />
+        <meta property='og:type' content='website' />
+        <meta property='og:site_name' content='DaemonScripts' />
+        <meta property='og:title' content={fullTitle} />
+        <meta property='og:description' content={description} />
+        <meta property='og:url' content={canonical} />
+    </head>
+    <body>
+        <header class='site-head'>
+            <div class='wrap'>
+                <a href='/' class='wordmark' aria-label='DaemonScripts home'><span class='a'>Daemon</span><span class='b'>Scripts</span></a>
+                <nav class='site-nav' aria-label='Main'>
+                    {
+                        nav.map((item) => (
+                            <a href={item.href} aria-current={current === item.id ? 'page' : undefined}>
+                                {item.label}
+                            </a>
+                        ))
+                    }
+                </nav>
+            </div>
+        </header>
+
+        <main id='main'>
+            <slot />
+        </main>
+
+        <footer class='site-foot'>
+            <div class='wrap'>
+                <span>DaemonScripts · Chicago, IL · home of the DelPerroSands scripts</span>
+                <nav aria-label='Footer'>
+                    <a href='https://github.com/DaemonAlex'>GitHub</a>
+                    <a href='https://delperrosands.com'>DelPerroSands</a>
+                    <a href='https://apexavcloud.com'>APEX</a>
+                    <a href='mailto:hello@daemonscripts.com'>hello@daemonscripts.com</a>
+                </nav>
+            </div>
+        </footer>
+    </body>
+</html>

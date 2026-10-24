@@ -1,0 +1,50 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base title='About' current='about' description='Who DaemonScripts is, what we build, and how to reach us.'>
+    <section class='hero' style='padding-block: 3rem'>
+        <div class='wrap'>
+            <p class='label'>About</p>
+            <h1 style='margin-top: 0.5rem'>Built in a live city</h1>
+        </div>
+    </section>
+
+    <div class='wrap project-layout'>
+        <article class='prose'>
+            <h2>Who we are</h2>
+            <p>
+                DaemonScripts is a small studio in Chicago, IL. We write the scripts behind
+                <a href='https://delperrosands.com'>Del Perro Sands</a>, a GTA V roleplay city, and we build
+                <a href='/projects/apex/'>APEX</a>, a project-management platform for audio-visual integrators and
+                field-ops teams.
+            </p>
+            <p>
+                The DPS collection is written for that city, which is why the pages on this site talk about how a script
+                behaves for players and staff, not just what its config file says.
+            </p>
+
+            <h2>Open source</h2>
+            <p>
+                The <code>dps-</code> scripts are free and open source on <a href='https://github.com/DaemonAlex'>GitHub</a>.
+                Where a script started life as someone else's work, its page credits the original author.
+            </p>
+
+            <h2>Get in touch</h2>
+            <p>
+                Questions, bug reports or custom work: email <a href='mailto:hello@daemonscripts.com'>hello@daemonscripts.com</a>,
+                or open an issue on the project's GitHub repository.
+            </p>
+        </article>
+
+        <aside class='facts panel' aria-label='Contact'>
+            <dl>
+                <div><dt>Email</dt><dd><a href='mailto:hello@daemonscripts.com'>hello@daemonscripts.com</a></dd></div>
+                <div><dt>GitHub</dt><dd><a href='https://github.com/DaemonAlex'>DaemonAlex</a></dd></div>
+                <div><dt>City</dt><dd><a href='https://delperrosands.com'>delperrosands.com</a></dd></div>
+                <div><dt>APEX</dt><dd><a href='https://apexavcloud.com'>apexavcloud.com</a></dd></div>
+            </dl>
+            <a class='btn btn-action' href='mailto:hello@daemonscripts.com'>Email us</a>
+        </aside>
+    </div>
+</Base>
