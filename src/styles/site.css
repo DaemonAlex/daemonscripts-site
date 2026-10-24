@@ -635,6 +635,45 @@ section.block {
     vertical-align: top;
 }
 
+/* Screenshots: a kit panel edge around each picture, a short caption under it.
+   `.shots` sets tall panel screenshots side by side. */
+.prose figure {
+    margin: 1.5rem 0;
+}
+
+.prose figure img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border: var(--edge-panel);
+    border-radius: var(--r-panel);
+    background: var(--navy-950);
+}
+
+/* A tall panel screenshot on its own stays phone-panel sized instead of filling the column. */
+.prose figure.tall {
+    max-width: 24rem;
+}
+
+.prose figcaption {
+    margin-top: 0.6rem;
+    font-size: 0.95rem;
+    line-height: 1.45;
+    color: var(--white-65);
+}
+
+.prose .shots {
+    display: grid;
+    gap: 1.25rem;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
+    align-items: start;
+    margin: 1.5rem 0;
+}
+
+.prose .shots figure {
+    margin: 0;
+}
+
 .prose blockquote {
     margin: 1rem 0;
     padding: 0.75rem 1rem;
