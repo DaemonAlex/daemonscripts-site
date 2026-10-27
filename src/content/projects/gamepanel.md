@@ -68,7 +68,13 @@ When you do switch, the panel stops the server, takes a backup first, moves it t
 
 ## Files
 
-A file manager for the server folder: browse, upload (big files go up in pieces so a flaky connection does not kill the transfer), download, rename, and make new files and folders. Deleting moves things to a trash folder instead of destroying them. Open a text file and you get a proper code editor with line numbers and syntax colouring, so editing a plugin config is a two-minute job from your phone, not a trip to the machine. Ctrl+S saves.
+A file manager for the server folder: browse, upload (big files go up in pieces so a flaky connection does not kill the transfer), download, rename, and make new files and folders. Deleting moves things to a trash folder instead of destroying them.
+
+<img src="/projects/gamepanel/files.jpg" alt="The Files tab showing the server folder with world folders, plugins, logs and config files, each with download, rename and delete buttons" width="1316" height="900" loading="lazy">
+
+Open a text file and you get a proper code editor with line numbers and syntax colouring, so editing a plugin config is a two-minute job from your phone, not a trip to the machine. Ctrl+S saves.
+
+<img src="/projects/gamepanel/file-editor.jpg" alt="server.properties open in the built-in code editor with line numbers, syntax colouring, and Save and Close buttons" width="1316" height="900" loading="lazy">
 
 ## Settings
 
