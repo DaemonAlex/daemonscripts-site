@@ -655,6 +655,31 @@ section.block {
     max-width: 24rem;
 }
 
+/* A small panel crop beside the paragraph that talks about it; stacks on phones. */
+.prose figure.side {
+    float: right;
+    width: min(100%, 22rem);
+    margin: 0.25rem 0 1rem 1.5rem;
+}
+
+/* A form or dialog crop that should not stretch across the column. */
+.prose figure.mid {
+    max-width: 34rem;
+}
+
+.prose h2,
+.prose h3 {
+    clear: both;
+}
+
+@media (max-width: 48rem) {
+    .prose figure.side {
+        float: none;
+        width: 100%;
+        margin: 1.5rem 0;
+    }
+}
+
 .prose figcaption {
     margin-top: 0.6rem;
     font-size: 0.95rem;
