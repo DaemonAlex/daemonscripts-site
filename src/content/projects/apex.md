@@ -220,9 +220,57 @@ A partner's own internal role caps whatever a client grants: a partner's field t
 
 ## People, roles and the audit trail
 
-Nine fixed company roles, from Owner to Viewer. Everyone in a workspace sees every project; the role decides what a person can change, and whether they see the money. Owners and administrators have a "view as" tool to preview the product as a lower role before inviting someone into it. Invitations are single-use.
+Nine fixed company roles, from Owner to Viewer. Everyone in a workspace sees every project; the role decides what a person can change, and whether they see the money. Owner and Administrator run the workspace (Owner alone can delete or transfer it). Project Manager does the project and field work plus the money and the connectors. Field Operations does visits, equipment and documents. Leadership reads everything with the money. Auditor and Security Auditor read everything plus the audit log; Financial Auditor reads the money but not the log. Viewer reads.
 
-Every create, update and delete lands in an append-only log with who, when, the IP and what changed. The runtime database role can write entries but cannot update or delete them, so history cannot be rewritten from the application. If ApexAV staff ever open a customer workspace to help with a support question, it is a look-only session of at most 60 minutes, with a typed reason, and it leaves two rows in that customer's audit log.
+<figure>
+<img src="/projects/apex/admin-home.png" alt="The Administration page: workspace name, trial and user count badges, and cards for Team and Roles, Partners and Sharing, Workspace, Settings, Plan and Billing, System health, Audit log, Data and Privacy, and Connectors" width="1364" height="450" loading="lazy">
+<figcaption>Administration is nine cards, each a question: who has access, what can each partner touch, who did what.</figcaption>
+</figure>
+
+<figure>
+<img src="/projects/apex/admin-team-counts.png" alt="Team and Roles: counts of admins and owners, project managers, field ops, viewers, auditors, leadership, security auditors and financial auditors, with an Invite teammate button" width="1364" height="371" loading="lazy">
+<figcaption>The team by role. One button invites the next person.</figcaption>
+</figure>
+
+<figure>
+<img src="/projects/apex/admin-team-table.png" alt="The team table: name, email, role badge, two-factor status, last login, joined date and active status" width="1364" height="278" loading="lazy">
+<figcaption>Every account with its role, whether two-factor is on, and when they last signed in.</figcaption>
+</figure>
+
+<figure class="mid">
+<img src="/projects/apex/admin-invite.png" alt="The Invite a teammate form: full name, work email, a role picker set to Project Manager, and a Send invite button" width="625" height="334" loading="lazy">
+<figcaption>Inviting someone is a name, an email and a role. Invitations are single-use. Owners and administrators also get a "view as" tool to preview the product as a lower role first.</figcaption>
+</figure>
+
+### What each partner can touch
+
+Partners never hold a company role. Partners and Sharing lists every partner organisation with three chips, Projects, Field Ops and Infrastructure, each at None, View, Work or Manage, workspace-wide or pinned to specific projects. A partner's own internal role caps whatever you grant.
+
+<figure>
+<img src="/projects/apex/admin-sharing.png" alt="Partners and Sharing card for Great Lakes AV Integration: 4 members, shared since Oct 27 2026, Projects at Work, Field Ops at Work, Infrastructure at View, with Sites and Rooms, Reports and Support coming soon" width="1364" height="230" loading="lazy">
+<figcaption>The integrator gets Work on projects and field ops and View on the fleet. Nothing else, and never another client's data.</figcaption>
+</figure>
+
+### The audit trail
+
+Every create, update and delete lands in an append-only log with who, when, the IP and what changed. The runtime database role can write entries but cannot update or delete them, so history cannot be rewritten from the application.
+
+<figure>
+<img src="/projects/apex/admin-audit.png" alt="The audit log: a filter box and a 30 day window, then rows with when, user, action with HTTP status, entity path, level and IP" width="1364" height="618" loading="lazy">
+<figcaption>Who did what, when, from where. Filter it to what the auditor asked for instead of running a six-week scramble.</figcaption>
+</figure>
+
+<figure>
+<img src="/projects/apex/admin-health.png" alt="System health: users, projects, field visits, equipment, Cisco devices, partners and licenses counts, and plugin health per connector" width="1364" height="415" loading="lazy">
+<figcaption>System health is the workspace's own numbers plus the sync state of every connector.</figcaption>
+</figure>
+
+<figure>
+<img src="/projects/apex/admin-privacy.png" alt="Data and Privacy: Export your workspace as a JSON snapshot with a Download button, and the data retention policy with a Read the full policy link" width="1364" height="590" loading="lazy">
+<figcaption>Your data is yours: export the whole workspace as JSON any time, and the retention policy is written where you can read it.</figcaption>
+</figure>
+
+If ApexAV staff ever open a customer workspace to help with a support question, it is a look-only session of at most 60 minutes, with a typed reason, and it leaves two rows in that customer's audit log.
 
 ## How it works
 
