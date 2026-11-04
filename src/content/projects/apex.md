@@ -303,4 +303,4 @@ The hosted service needs no installation: apply for beta access at [apexavcloud.
 
 ## Credits
 
-Designed and built by DaemonAlex. Creative direction and writing by Kelly Jackson. ApexAV is a product of DS Development.
+Designed and built by DaemonAlex. ApexAV is a product of DS Development.
